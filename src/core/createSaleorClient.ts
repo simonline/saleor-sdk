@@ -7,11 +7,11 @@ import { SaleorClient, SaleorClientOpts } from "./types";
 import { createStorage, storage } from "./storage";
 import { DEVELOPMENT_MODE, WINDOW_EXISTS } from "../constants";
 
-export const createSaleorClient = ({
+export const createSaleorClient = async ({
   apiUrl,
   channel,
   opts = {},
-}: SaleorClientOpts): SaleorClient => {
+}: SaleorClientOpts): Promise<SaleorClient> => {
   let _channel = channel;
   const { autologin = true, fetchOpts } = opts;
 
@@ -20,7 +20,7 @@ export const createSaleorClient = ({
     return _channel;
   };
 
-  createStorage(autologin);
+  await createStorage(autologin);
   const apolloClient = createApolloClient(apiUrl, autologin, fetchOpts);
   const coreInternals = { apolloClient, channel: _channel };
   const authSDK = auth(coreInternals);

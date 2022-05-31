@@ -14,8 +14,8 @@ import {
 import { storage } from "../src/core/storage";
 import { loginWithExternalPlugin } from "./utils";
 
-describe("auth api", () => {
-  const saleor = setupSaleorClient();
+describe("auth api", async () => {
+  const saleor = await setupSaleorClient();
   const mockServer = setupMockServer();
 
   beforeAll(() => mockServer.listen());

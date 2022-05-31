@@ -74,14 +74,14 @@ const testRefreshTokenOnDelayedExampleRequests = async (
 
 jest.setTimeout(15000);
 
-describe("auth api auto token refresh", () => {
+describe("auth api auto token refresh", async () => {
   const tokenExpirationPeriod = 6;
   const tokenExpirationPeriodCheckWait = tokenExpirationPeriod + 0.1;
   const tokenRefreshTimeSkew = 3;
   const tokenRefreshTimeSkewCheckWait = tokenRefreshTimeSkew + 0.1;
   const noCheckWait = 0;
 
-  const saleor = setupSaleorClient({
+  const saleor = await setupSaleorClient({
     tokenRefreshTimeSkew,
   });
   const mockServer = setupMockServer({

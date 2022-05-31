@@ -70,8 +70,8 @@ export const setupRecording = (): Context =>
 export const setupMockServer = (opts?: MockHandlersOpts) =>
   setupServer(...mockHandlers(opts));
 
-export const setupSaleorClient = (fetchOpts?: FetchConfig): SaleorClient => {
-  const saleor = createSaleorClient({
+export const setupSaleorClient = async (fetchOpts?: FetchConfig): SaleorClient => {
+  const saleor = await createSaleorClient({
     apiUrl: API_URI,
     channel: "default-channel",
     opts: {
